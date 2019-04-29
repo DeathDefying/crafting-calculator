@@ -64,7 +64,7 @@ module.exports = function MathTalents(mod)
 		let emeralds  =  Math.round(sapphires/10);
 		let diamonds  =  Math.round(emeralds/10);
 		
-		let gem_kits =  Math.round(((arg_gem/2)*20) + ((sapphires/5)*100) + ((emeralds/10)*1000));
+		let gem_kits =  ((arg_gem/2)*20) + ((sapphires/5)*100) + ((emeralds/10)*1000);
 		let cc 		 = 	Math.round((((arg_gem/2)*20) + ((sapphires/5)*85) + ((emeralds/10)*500))/1000);
 		let gold     =  Math.round(gem_kits*1.07);
 		
