@@ -7,6 +7,6 @@
     "options": {
         "niceName": "Crafting Info" 
     },
-    "servers": ["https://raw.githubusercontent.com/DeathDefying/crafting-calculator/master/"],
+    "servers": ["https://raw.githubusercontent.com/DeathDefying/crafting-calculator"],
     "supportUrl": "DM Yang#0966"
 }
