@@ -1,7 +1,8 @@
 {
     "files": {
-        "index.js": "905696fe909bc8b1d9c33c4d34eedc0192abeac8d601f0378e0bbd0e26069dda",
-        "module.json": "1ef291914b69bf585bc0c2a43ac8d9d181b5e8356aeb8eac776bb19bef74149c"
+        "index.js": "949c9cc2ef90021c7ee140cb8febab37be30ba3532918cd0f1a95c2e46e0df92",
+        "manifest-generator-master/README.md": "0e7e92d2fa123150e220615fce7920e63a8ba92250b8fad14a40ddee5a10677a",
+        "manifest-generator-master/README.url": "2250cd9fcdf8c8b8e6ee29e5e113ad959e476146a57f407623c026c732feca8f",
+        "module.json": "214b67da8f8cc3ccbad2e89e34f628ff949d76aa2dc414460b301081790f8241"
     }
 }
-
