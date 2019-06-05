@@ -1,62 +1,127 @@
 module.exports = function MathTalents(mod)
 {
-	mod.command.add(['gtalent'],(arg) =>
+	let darics,
+		gplates,
+		kits,
+		cc,
+		gold;
+	
+	mod.command.add(['craft'],(arg,arg2) =>
 	{
-		let darics = ((arg/5)*3);
-		darics = Math.round((darics*0.05*2)+darics);
-		let plates = ((darics/5)*3);
-		plates = Math.round((plates*0.05*2)+plates);
-		let kits = ((arg/5)*(60)) + ((darics/5)*(240));
-		let cc = Math.round((((arg/5)*(20)) + ((darics/5) * 80))/1000);
-		let gold = Math.round(kits*1.07);
+		if(arg && arg.length > 0) arg = arg.toLowerCase();
+		if(arg2 && arg2.length > 0) arg2 = arg2.toLowerCase();
 		
-		if(isNaN(arg))
+		switch(arg)
 		{
-			mod.command.message("Please type a number as argument, i.e: gtalent 500");
-		}
-		else if(arg >= 5)
-		{		
-			mod.command.message(`<font color="#00FFFF">${arg}</font>` + " Golden Talents equals to: ");
-			mod.command.message(`<font color="#00FFFF">${darics}</font>` + " Golden Darics");
-			mod.command.message(`<font color="#00FFFF">${plates}</font>` + " Golden Plates");
-			mod.command.message(`<font color="#00FFFF">${kits}</font>` + " Kits required");
-			mod.command.message(`<font color="#00FFFF">${cc}</font>` + " CC's required");
-			mod.command.message(`<font color="#00FFFF">${gold}</font>` + " Gold required");
-		}
-		else
-		{
-			mod.command.message("Please type a number a number >= 5");
+			case 'gtalent':
+				calculateGolden(arg,arg2);
+				break;
+			case 'daric':
+				calculateDaric(arg,arg2);
+				break;
+			case 'stalent':
+				calculateGolden(arg,arg2);
+				break;
+			case 'siglo': 
+				calculateDaric(arg,arg2);
+				break;
+			default:
+				mod.command.message('Unknown command - Please read the readme');
 		}
 	});
 	
-	mod.command.add(['stalent'],(arg_silver) =>
+	function calculateGolden(arg,arg2)
 	{
-		let siglos = ((arg_silver/5)*3);
-		siglos = Math.round((siglos*0.05*2)+siglos);
-		let plates = ((siglos/5)*3);
-		plates = Math.round((plates*0.05*2)+plates);
-		let kits = ((arg_silver/5)*(60)) + ((siglos/5)*(240));
-		let cc = Math.round((((arg_silver/5)*(20)) + ((siglos/5) * 80))/1000);
-		let gold = Math.round(kits*1.07);
-		
-		if(isNaN(arg_silver))
-		{
-			mod.command.message("Please type a number as argument, i.e: stalent 500");
-		}
-		else if(arg_silver >= 5)
-		{		
-			mod.command.message(`<font color="#00FFFF">${arg_silver}</font>` + " Silver Talents equals to: ");
-			mod.command.message(`<font color="#00FFFF">${siglos}</font>` + " Silver Siglos");
-			mod.command.message(`<font color="#00FFFF">${plates}</font>` + " Silver Plates");
-			mod.command.message(`<font color="#00FFFF">${kits}</font>` + " Kits required");
-			mod.command.message(`<font color="#00FFFF">${cc}</font>` + " CC's required");
-			mod.command.message(`<font color="#00FFFF">${gold}</font>` + " Gold required");
-		}
-		else
+		if(!(errorMessage(arg2)))
 		{
 			mod.command.message("Please type a number a number >= 5");
+			return;
 		}
-	});
+		
+		darics = ((arg2/5)*3);
+		darics = Math.round((darics*0.05*2)+darics);
+		gplates = ((darics/5)*3);
+		gplates = Math.round((gplates*0.05*2)+gplates);
+		
+		kits = ((arg2/5)*(60)) + ((darics/5)*(240));
+		cc = Math.round((((arg2/5)*(20)) + ((darics/5) * 80))/1000);
+		gold = Math.round(kits*1.07);
+		
+		messageTalent(darics,gplates,kits,cc,gold,arg,arg2);
+	}
+	
+	function calculateDaric(arg,arg2)
+	{
+		
+		if(!(errorMessage(arg2)))
+		{
+			mod.command.message("Please type a number a number >= 5");
+			return;
+		}
+		
+		gplates = ((arg2/5)*3);
+		gplates = Math.round((gplates*0.05*2)+gplates);
+		
+		kits = ((arg2/5)*(240));
+		cc = Math.round((((arg2/5) * 80))/1000);
+		gold = Math.round(kits*1.07);
+		
+		messageDaric(arg,arg2,gplates,kits,cc,gold);
+	}
+
+	function messageDaric(arg,arg2,gplates,kits,cc,gold)
+	{
+		switch (arg)
+		{
+			case 'daric':
+				mod.command.message(`<font color="#00FFFF">${arg2}</font>` + " Golden Darics equals to: ");
+				mod.command.message(`<font color="#00FFFF">${gplates}</font>` + " Golden Plates");
+				mod.command.message(`<font color="#00FFFF">${kits}</font>` + " Kits required");
+				mod.command.message(`<font color="#00FFFF">${cc}</font>` + " CC's required");
+				mod.command.message(`<font color="#00FFFF">${gold}</font>` + " Gold required");
+				break;
+			case 'siglo':
+				mod.command.message(`<font color="#00FFFF">${arg2}</font>` + " Silver Siglos equals to: ");
+				mod.command.message(`<font color="#00FFFF">${gplates}</font>` + " Silver Plates");
+				mod.command.message(`<font color="#00FFFF">${kits}</font>` + " Kits required");
+				mod.command.message(`<font color="#00FFFF">${cc}</font>` + " CC's required");
+				mod.command.message(`<font color="#00FFFF">${gold}</font>` + " Gold required");
+				break;
+		}
+	}
+	
+	function messageTalent(darics,gplates,kits,cc,gold,arg,arg2)
+	{
+		switch (arg)
+		{
+			case 'gtalent':
+				mod.command.message(`<font color="#00FFFF">${arg2}</font>` + " Golden Talents equals to: ");
+				mod.command.message(`<font color="#00FFFF">${darics}</font>` + " Golden Darics");
+				mod.command.message(`<font color="#00FFFF">${gplates}</font>` + " Golden Plates");
+				mod.command.message(`<font color="#00FFFF">${kits}</font>` + " Kits required");
+				mod.command.message(`<font color="#00FFFF">${cc}</font>` + " CC's required");
+				mod.command.message(`<font color="#00FFFF">${gold}</font>` + " Gold required");
+				break;
+			case 'stalent':
+				mod.command.message(`<font color="#00FFFF">${arg2}</font>` + " Silver Talents equals to: ");
+				mod.command.message(`<font color="#00FFFF">${darics}</font>` + " Silver Siglos");
+				mod.command.message(`<font color="#00FFFF">${gplates}</font>` + " Silver Plates");
+				mod.command.message(`<font color="#00FFFF">${kits}</font>` + " Kits required");
+				mod.command.message(`<font color="#00FFFF">${cc}</font>` + " CC's required");
+				mod.command.message(`<font color="#00FFFF">${gold}</font>` + " Gold required");
+				break;
+		}
+
+	}
+	
+	function errorMessage(arg)
+	{
+		if(isNaN(arg) || arg < 5)
+		{
+			return false;
+		}
+		return true;
+	}
 	
 	mod.command.add(['gems'],(arg_gem) =>
 	{
