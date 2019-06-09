@@ -3,10 +3,10 @@
     "name": "crafting-calculator",
     "author": "Leo/Yang",
     "description": "Calculate plates/gems mats and more",
-    "version": "4/14/2019", 
+    "version": "4/14/2019",
     "options": {
-        "niceName": "Crafting Info" 
+        "niceName": "Crafting Info"
     },
-    "servers": ["https://raw.githubusercontent.com/DeathDefying/crafting-calculator"],
+    "servers": ["https://raw.githubusercontent.com/DeathDefying/crafting-calculator/master/"],
     "supportUrl": "DM Yang#0966"
 }
