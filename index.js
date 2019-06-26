@@ -1,15 +1,40 @@
+const config = require('./config.json');
+
 module.exports = function MathTalents(mod)
 {
 	let darics,
 		gplates,
 		kits,
 		cc,
-		gold;
+		gold,
+		crit,
+		pie = config.pie;
 	
-	mod.command.add(['craft'],(arg,arg2) =>
+	mod.command.add(['craft'],(arg,arg2,arg3) =>
 	{
 		if(arg && arg.length > 0) arg = arg.toLowerCase();
 		if(arg2 && arg2.length > 0) arg2 = arg2.toLowerCase();
+		
+		if(arg3 && arg3.length > 0)
+		{
+			arg3 = arg3.toLowerCase();
+			switch(arg3)
+			{
+				case "pie":
+					if(pie) 
+					{ 
+						mod.command.message("Pie enabled");
+						pie = true;
+					}
+					else 
+					{
+						mod.command.message("Pie Disabled");
+						pie = false;
+					}
+				default:
+					mod.command.message('Unknown command - Please read the readme');
+			}
+		}
 		
 		switch(arg)
 		{
@@ -38,10 +63,19 @@ module.exports = function MathTalents(mod)
 			return;
 		}
 		
+		if(pie)
+		{
+			crit = 0.055;
+		}
+		else
+		{
+			crit = 0.05;
+		}
+		
 		darics = ((arg2/5)*3);
-		darics = Math.round((darics*0.05*2)+darics);
+		darics = Math.round(((arg2/5)*crit*2)+darics);
 		gplates = ((darics/5)*3);
-		gplates = Math.round((gplates*0.05*2)+gplates);
+		gplates = Math.round(((darics/5)*crit*2)+gplates);
 		
 		kits = ((arg2/5)*(60)) + ((darics/5)*(240));
 		cc = Math.round((((arg2/5)*(20)) + ((darics/5) * 80))/1000);
@@ -60,7 +94,7 @@ module.exports = function MathTalents(mod)
 		}
 		
 		gplates = ((arg2/5)*3);
-		gplates = Math.round((gplates*0.05*2)+gplates);
+		gplates = Math.round(((arg2/5)*crit*2)+gplates);
 		
 		kits = ((arg2/5)*(240));
 		cc = Math.round((((arg2/5) * 80))/1000);
