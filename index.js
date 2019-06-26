@@ -14,7 +14,7 @@ module.exports = function MathTalents(mod)
 	{
 		if(arg && arg.length > 0) arg = arg.toLowerCase();
 		if(arg2 && arg2.length > 0) arg2 = arg2.toLowerCase();
-		
+
 		if(arg3 && arg3.length > 0)
 		{
 			arg3 = arg3.toLowerCase();
@@ -36,7 +36,7 @@ module.exports = function MathTalents(mod)
 					mod.command.message('Unknown command - Please read the readme');
 			}
 		}
-		
+
 		switch(arg)
 		{
 			case 'gtalent':
@@ -94,9 +94,18 @@ module.exports = function MathTalents(mod)
 			return;
 		}
 		
+		if(pie)
+		{
+			crit = 0.055;
+		}
+		else
+		{
+			crit = 0.05;
+		}
+		
 		gplates = ((arg2/5)*3);
 		gplates = Math.round(((arg2/5)*crit*2)+gplates);
-		
+
 		kits = ((arg2/5)*(240));
 		cc = Math.round((((arg2/5) * 80))/1000);
 		gold = Math.round(kits*1.07);
