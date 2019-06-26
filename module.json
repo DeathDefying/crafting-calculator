@@ -1,5 +1,5 @@
 {
-    "disableAutoUpdate": true,
+    "disableAutoUpdate": false,
     "name": "crafting-calculator",
     "author": "Yang",
     "description": "Calculate plates/gems mats and more",
