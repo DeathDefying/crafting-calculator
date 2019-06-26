@@ -21,16 +21,17 @@ module.exports = function MathTalents(mod)
 			switch(arg3)
 			{
 				case "pie":
-					if(pie) 
+					if(!pie) 
 					{ 
-						mod.command.message("Pie enabled");
+						mod.command.message("Pie " + `<font color="#FE7F00">enabled</font>`);
 						pie = true;
 					}
 					else 
 					{
-						mod.command.message("Pie Disabled");
+						mod.command.message("Pie " + `<font color="#0070FE">disabled</font>`);
 						pie = false;
 					}
+					break;
 				default:
 					mod.command.message('Unknown command - Please read the readme');
 			}
@@ -39,23 +40,23 @@ module.exports = function MathTalents(mod)
 		switch(arg)
 		{
 			case 'gtalent':
-				calculateGolden(arg,arg2);
+				calculateGolden(arg,arg2,pie);
 				break;
 			case 'daric':
-				calculateDaric(arg,arg2);
+				calculateDaric(arg,arg2,pie);
 				break;
 			case 'stalent':
-				calculateGolden(arg,arg2);
+				calculateGolden(arg,arg2,pie);
 				break;
 			case 'siglo': 
-				calculateDaric(arg,arg2);
+				calculateDaric(arg,arg2,pie);
 				break;
 			default:
 				mod.command.message('Unknown command - Please read the readme');
 		}
 	});
 	
-	function calculateGolden(arg,arg2)
+	function calculateGolden(arg,arg2,pie)
 	{
 		if(!(errorMessage(arg2)))
 		{
@@ -84,7 +85,7 @@ module.exports = function MathTalents(mod)
 		messageTalent(darics,gplates,kits,cc,gold,arg,arg2);
 	}
 	
-	function calculateDaric(arg,arg2)
+	function calculateDaric(arg,arg2,pie)
 	{
 		
 		if(!(errorMessage(arg2)))
